@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnggaranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -22,4 +23,11 @@ Route::get('user/import', [UserController::class, 'importForm'])->name('user.imp
 Route::post('user/import', [UserController::class, 'importStore'])->name('user.import');
 Route::resource('user', UserController::class)->parameters([
     'user' => 'data'
+]);
+
+Route::get('/anggaran', [AnggaranController::class, 'index']);
+Route::get('anggaran/import', [AnggaranController::class, 'importForm'])->name('anggaran.import');
+Route::post('anggaran/import', [AnggaranController::class, 'importStore'])->name('anggaran.import');
+Route::resource('anggaran', AnggaranController::class)->parameters([
+    'anggaran' => 'data'
 ]);
