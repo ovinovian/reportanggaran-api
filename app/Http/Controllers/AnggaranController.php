@@ -73,6 +73,18 @@ class AnggaranController extends Controller
             
                 Excel::import(new AnggaranImport(), $request->file('file'));
 
+                // Excel::load($request->file('file'), function($reader) {
+                //     $reader->each(function($sheet) {
+                //         $sheet->each(function($row) {
+                //             $rowArray = $row->toArray();
+                //             $uniqueValues = array_unique($rowArray);
+                //             dd( $uniqueValues);
+                //             $model = new AnggaranImport;
+                //             $model->fill($uniqueValues);
+                //             $model->save();
+                //         });
+                //     });
+                // });
                 return response()->json(['success' => 'update success']);
             }
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
@@ -80,5 +92,6 @@ class AnggaranController extends Controller
         } catch (\Exception $e) {
             throw $e;
         }
+        
     }
 }

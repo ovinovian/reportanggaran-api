@@ -5,9 +5,16 @@ namespace App\Imports;
 use App\Models\Anggaran;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
 class AnggaranImport implements ToModel
 {
+
     /**
     * @param array $row
     *
@@ -16,12 +23,11 @@ class AnggaranImport implements ToModel
     public function model(array $row)
     {
 
-        $getSkpd = DB::table('anggarans')->get();
 
-        $cek_skpd = $getSkpd->pluck('kode_skpd');
-
-        if ($cek_skpd->contains($row[1]) == false) 
-        {
+        $name = $row['kode_skpd'];
+        if (!Anggaran::where('kode_skpd', $name)->exists()) {
+                
+       
             return new Anggaran([
                 'kode_skpd' => $row[1],
                 'nama_skpd' => $row[2],
@@ -69,10 +75,12 @@ class AnggaranImport implements ToModel
                 'periode' => $row[44],
                 'nilai_realisasi_lra' => $row[45],
                 'no_spp_gu' => $row[46],
-                'nilai_spp_gu' => $row[47]
+                'nilai_spp_gu' => $row[47],
             ]);
+
         }
-        else null; 
+        
+        
 
 
 
