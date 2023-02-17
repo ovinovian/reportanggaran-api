@@ -11,6 +11,12 @@ return new class extends Migration
      *
      * @return void
      */
+
+    /**
+     * select `report-all`.`anggarans`.`kode_sub_skpd` AS `kode_sub_skpd`,`report-all`.`anggarans`.`nama_sub_skpd` AS `nama_sub_skpd`,sum(`report-all`.`anggarans`.`nilai_realisasi`) AS `nilai_realisasi` from `report-all`.`anggarans` group by `report-all`.`anggarans`.`kode_sub_skpd`,`report-all`.`anggarans`.`nama_sub_skpd` order by `report-all`.`anggarans`.`kode_sub_skpd` <--- dibuat viewnya ya
+     */
+
+
     public function up()
     {
         Schema::create('anggarans', function (Blueprint $table) {
