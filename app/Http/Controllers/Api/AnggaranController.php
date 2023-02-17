@@ -18,7 +18,6 @@ class AnggaranController extends BaseController
     public function index()
     {
         $angarans = Anggaran::select('kode_sub_skpd', 'nama_sub_skpd')->groupBy('kode_sub_skpd', 'nama_sub_skpd')->get();
-        $data = $angarans->sum('nilai_realisasi');
 
         return $this->sendResponse(AnggaranResource::collection($data), 'Successfully Ya');
     }
