@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Anggaran;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
 class AnggaranImport implements ToModel
 {
@@ -12,8 +13,24 @@ class AnggaranImport implements ToModel
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    public $urut;
+
+    public function __construct($urut)
+    {
+        $this->urut = 1;
+    }
+
     public function model(array $row)
     {
+        // $rowIndex = $row->getIndex();
+        if($this->urut == 1){
+            Anggaran::where('kode_skpd',$row[1])->delete();
+            $this->urut++;
+        }
+        else{
+            $this->urut++;
+        }
+        
         return new Anggaran([
             'kode_skpd' => $row[1],
             'nama_skpd' => $row[2],
@@ -63,5 +80,5 @@ class AnggaranImport implements ToModel
             'no_spp_gu' => $row[46],
             'nilai_spp_gu' => $row[47]
         ]);
-    }
+    }    
 }

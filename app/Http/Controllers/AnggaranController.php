@@ -71,7 +71,9 @@ class AnggaranController extends Controller
                 
                 $request->validated();
             
-                Excel::import(new AnggaranImport(), $request->file('file'));
+                $test = Excel::import(new AnggaranImport(1), $request->file('file'));
+
+                // dd($request->ajax());
 
                 return response()->json(['success' => 'update success']);
             }
