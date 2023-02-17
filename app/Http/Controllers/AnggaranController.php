@@ -71,20 +71,9 @@ class AnggaranController extends Controller
                 
                 $request->validated();
             
-                Excel::import(new AnggaranImport(), $request->file('file'));
+                $test = Excel::import(new AnggaranImport(1), $request->file('file'));
 
-                // Excel::load($request->file('file'), function($reader) {
-                //     $reader->each(function($sheet) {
-                //         $sheet->each(function($row) {
-                //             $rowArray = $row->toArray();
-                //             $uniqueValues = array_unique($rowArray);
-                //             dd( $uniqueValues);
-                //             $model = new AnggaranImport;
-                //             $model->fill($uniqueValues);
-                //             $model->save();
-                //         });
-                //     });
-                // });
+               
                 return response()->json(['success' => 'update success']);
             }
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
