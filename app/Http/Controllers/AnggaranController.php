@@ -73,7 +73,6 @@ class AnggaranController extends Controller
             
                 $test = Excel::import(new AnggaranImport(1), $request->file('file'));
 
-               
                 return response()->json(['success' => 'update success']);
             }
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
