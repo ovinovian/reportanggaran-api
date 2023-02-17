@@ -4,7 +4,6 @@ namespace App\Imports;
 
 use App\Models\Anggaran;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithStartRow;
 
 class AnggaranImport implements ToModel
 {
@@ -22,7 +21,6 @@ class AnggaranImport implements ToModel
 
     public function model(array $row)
     {
-        // $rowIndex = $row->getIndex();
         if($this->urut == 1){
             Anggaran::where('kode_skpd',$row[1])->delete();
             $this->urut++;
