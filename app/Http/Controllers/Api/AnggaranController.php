@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Models\Anggaran;
+use DB;
 use App\Http\Resources\Anggaran as AnggaranResource;
 
 class AnggaranController extends BaseController
@@ -17,9 +18,13 @@ class AnggaranController extends BaseController
      */
     public function index()
     {
-        $angarans = Anggaran::select('kode_sub_skpd', 'nama_sub_skpd')->groupBy('kode_sub_skpd', 'nama_sub_skpd')->get();
+        $angarans = DB::table('anggarans')
+        ->select('kode_sub_skpd', 'nama_sub_skpd', DB::raw('SUM(nilai_realisasi) as nilai_realisasi'))
+        ->groupBy('kode_sub_skpd', 'nama_sub_skpd')
+        ->orderBy('kode_sub_skpd')
+        ->get();
 
-        return $this->sendResponse(AnggaranResource::collection($data), 'Successfully Ya');
+        return $this->sendResponse(AnggaranResource::collection($angarans), 'Successfully Ya');
     }
 
     /**

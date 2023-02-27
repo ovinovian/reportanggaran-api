@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Anggaran;
 
 class Anggaran extends JsonResource
 {
@@ -15,8 +16,11 @@ class Anggaran extends JsonResource
     public function toArray($request)
     {
         return [
+            
             'kode_sub_skpd' => $this->kode_sub_skpd,
             'nama_sub_skpd' => $this->nama_sub_skpd,
+            'nilai_realisasi' =>$this->nilai_realisasi,
+            'data' => $this->user,
             
         ];
     }
