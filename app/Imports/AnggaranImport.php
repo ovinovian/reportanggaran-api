@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Models\Anggaran;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class AnggaranImport implements ToModel
+class AnggaranImport implements ToModel, WithChunkReading
 {
 
     /**
@@ -79,5 +80,13 @@ class AnggaranImport implements ToModel
             'no_spp_gu' => $row[46],
             'nilai_spp_gu' => $row[47]
         ]);
-    }    
+    }
+
+    /**
+     * @return int
+     */
+    public function chunkSize(): int
+    {
+        return 1000;
+    }
 }

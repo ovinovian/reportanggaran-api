@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggaran;
-use App\Models\Anggaran as DataDb;
+use App\Models\Anggaran2;
+
+use App\Models\ViewAnggaran2;
+use App\Models\ViewAnggaran2 as DataDb;
 use Illuminate\Http\Request;
-use App\Imports\AnggaranImport;
+use App\Imports\Anggaran2Import;
 use App\Http\Requests\UserImportRequest as ImportValidation;
 use Maatwebsite\Excel\Facades\Excel;
 
-class AnggaranController extends Controller
+class Anggaran2Controller extends Controller
 {
     /**
      * The url of resources.
@@ -23,7 +25,8 @@ class AnggaranController extends Controller
      */
     public function __construct()
     {
-        $this->type = 'anggaran';
+        $this->type = 'anggaran2';
+        // dd(Anggaran2::where('urusan','1 URUSAN PEMERINTAHAN WAJIB YANG BERKAITAN DENGAN PELAYANAN DASAR')->get());
     }
 
     public function index(Request $request)
@@ -45,6 +48,8 @@ class AnggaranController extends Controller
             })
             ->toJson();
         }
+
+        
 
         return view($this->type . '.index', [
             'type' => $this->type,
@@ -70,10 +75,9 @@ class AnggaranController extends Controller
             if ($request->ajax()) {
                 
                 $request->validated();
-            
-                $test = Excel::import(new AnggaranImport(1), $request->file('file'));
+            // 
+                $test = Excel::import(new Anggaran2Import(), $request->file('file'));
 
-               
                 return response()->json(['success' => 'update success']);
             }
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
