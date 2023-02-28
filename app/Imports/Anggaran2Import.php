@@ -34,16 +34,16 @@ class Anggaran2Import implements ToModel
     {
         
         return new Anggaran2([
-            'urusan' => $row[1],
-            'opd' => $row[2],
-            'bidang_urusan' => $row[3],
-            'sub_unit' => $row[4],
-            'program' => $row[5],
-            'kegiatan' => $row[6],
-            'sub_kegiatan' => $row[7],
-            'rekening' => $row[8],
-            'nilai_rincian' => $row[9],
-            'nilai_realisasi' => $row[10]
+            'urusan' => $row[0],
+            'opd' => $row[1],
+            'bidang_urusan' => $row[2],
+            'sub_unit' => $row[3],
+            'program' => $row[4],
+            'kegiatan' => $row[5],
+            'sub_kegiatan' => $row[6],
+            'rekening' => $row[7],
+            'nilai_rincian' => (string)$row[8],
+            'nilai_realisasi' => (string)$row[9]
         ]);
         
         // return new Anggaran2([

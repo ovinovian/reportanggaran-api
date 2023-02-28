@@ -14,7 +14,7 @@
 
   <div class="row mb-3">
     <div class="col">
-      <form method="POST" action="{{ route($type . '.import') }}" id="form-import" class="needs-validation"
+      <form method="POST" action="{{ route($type . '.imported') }}" id="form-import" class="needs-validation"
         accept-charset="UTF-8" enctype="multipart/form-data" novalidate>
         @csrf
 

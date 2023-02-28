@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Anggaran;
 
 class Anggaran extends JsonResource
 {
@@ -17,10 +16,11 @@ class Anggaran extends JsonResource
     {
         return [
             
-            'kode_sub_skpd' => $this->kode_sub_skpd,
-            'nama_sub_skpd' => $this->nama_sub_skpd,
-            'nilai_realisasi' =>$this->nilai_realisasi,
-            'data' => $this->user,
+            'kode_opd' => $this->kode_opd,
+            'nama_opd' => $this->nama_opd,
+            'total_rincian' =>$this->total_rincian,
+            'nilai_realisasi' =>$this->total_realisasi,
+            'persentase_capaian' => $this->persentase_capaian
             
         ];
     }
