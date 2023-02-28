@@ -4,6 +4,7 @@ use App\Http\Controllers\AnggaranController;
 use App\Http\Controllers\Anggaran2Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SistemLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,14 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+//sistem register dan login
+Route::get('/register', [SistemLoginController::class, 'register_akun'])->name('register.user');
+Route::post('/proses_register', [SistemLoginController::class, 'proses_register'])->name('proses.register');
+Route::get('/login', [SistemLoginController::class, 'halaman_login'])->name('login.user');
+Route::post('/verifikasilogin', [SistemLoginController::class, 'login_verifikasi'])->name('verifikasi.login');
+Route::get('/log_out', [SistemLoginController::class, 'log_out'])->name('logout.user');
 
 // Route::get('/', [UserController::class, 'index']);
 Route::get('/', [Anggaran2Controller::class, 'index'])->name('anggaran2.index');

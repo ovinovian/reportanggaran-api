@@ -31,6 +31,10 @@ class Anggaran2Controller extends Controller
 
     public function index(Request $request)
     {
+        if(!session()->has('uuid') || !session()->has('username')){
+            return redirect()->route('login.user');
+        } else {
+           
         if ($request->ajax()) {
             return datatables(DataDb::query())
             ->addIndexColumn()
@@ -54,6 +58,8 @@ class Anggaran2Controller extends Controller
         return view($this->type . '.index', [
             'type' => $this->type,
         ]);
+        }
+
     }
 
     /**
@@ -61,9 +67,14 @@ class Anggaran2Controller extends Controller
      */
     public function importForm()
     {
-        return view($this->type . '.import', [
-            'type' => $this->type,
-        ]);
+        
+        if(!session()->has('uuid') || !session()->has('username')){
+            return redirect()->route('login.user');
+        } else {
+            return view($this->type . '.import', [
+                'type' => $this->type,
+            ]);
+        }
     }
 
     /**
