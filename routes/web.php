@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnggaranController;
 use App\Http\Controllers\Anggaran2Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -16,9 +17,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', [UserController::class, 'index']);
-Route::get('/', [Anggaran2Controller::class, 'index'])->name('anggaran2.index');
+Route::get('/', [DashboardController::class, 'index']);
 
+Route::get('/anggaran2', [Anggaran2Controller::class, 'index'])->name('anggaran2.index');
 Route::get('anggaran2/import', [Anggaran2Controller::class, 'importForm'])->name('anggaran2.import');
 Route::post('/anggaran2/import', [Anggaran2Controller::class, 'importStore'])->name('anggaran2.imported');
 
