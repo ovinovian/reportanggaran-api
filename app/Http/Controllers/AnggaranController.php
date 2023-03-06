@@ -23,7 +23,7 @@ class AnggaranController extends Controller
      */
     public function __construct()
     {
-        $this->type = 'anggaran';
+        $this->type = 'realisasi';
     }
 
     public function index(Request $request)
@@ -31,17 +31,8 @@ class AnggaranController extends Controller
         if ($request->ajax()) {
             return datatables(DataDb::query())
             ->addIndexColumn()
-            ->editColumn('created_at', function ($row) {
-                return [
-                    'display' => $row->created_at->isoFormat('DD MMMM Y HH:mm:ss'),
-                    'timestamp' => $row->created_at->timestamp,
-                ];
-            })
-            ->editColumn('updated_at', function ($row) {
-                return [
-                    'display' => $row->updated_at->isoFormat('DD MMMM Y HH:mm:ss'),
-                    'timestamp' => $row->updated_at->timestamp,
-                ];
+            ->editColumn('nilai_realisasi', function ($row) {
+                return number_format($row->nilai_realisasi,0,",",".");
             })
             ->toJson();
         }

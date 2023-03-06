@@ -34,10 +34,10 @@
 
                     <!-- item-->
 
-                    <a class="dropdown-item notify-item" href="#"
+                    {{-- <a class="dropdown-item notify-item" href="#"
                         class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"> <i
-                            class="mdi mdi-login me-1"></i>Register</a>
-                    <a href="#" class="dropdown-item notify-item">
+                            class="mdi mdi-login me-1"></i>Register</a> --}}
+                    <a href="{{ route('login.user') }}" class="dropdown-item notify-item">
                         <i class="mdi mdi-login me-1"></i>
                         <span>Login</span>
                     </a>
@@ -56,7 +56,7 @@
             <div class="collapse navbar-collapse" id="topnav-menu-content">
                 <ul class="navbar-nav">
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" id="topnav-dashboards" role="button" aria-haspopup="true">
+                        <a class="nav-link" href="/" id="topnav-dashboards" role="button" aria-haspopup="true">
                             <i class="uil-dashboard me-1"></i>ANGGARAN PROVINSI KEPULAUAN BANGKA BELITUNG
                         </a>
                     </li>

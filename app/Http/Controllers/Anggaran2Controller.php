@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggaran2;
-
+use Session;
 use App\Models\ViewAnggaran2;
 use App\Models\ViewAnggaran2 as DataDb;
 use Illuminate\Http\Request;
@@ -25,27 +25,37 @@ class Anggaran2Controller extends Controller
      */
     public function __construct()
     {
-        $this->type = 'anggaran2';
+        $this->type = 'rincian';
         // dd(Anggaran2::where('urusan','1 URUSAN PEMERINTAHAN WAJIB YANG BERKAITAN DENGAN PELAYANAN DASAR')->get());
     }
 
     public function index(Request $request)
     {
+        if(!session()->has('uuid') || !session()->has('username')){
+            return redirect()->route('login.user');
+        } else {
+        
         if ($request->ajax()) {
             return datatables(DataDb::query())
             ->addIndexColumn()
-            ->editColumn('created_at', function ($row) {
-                return [
-                    'display' => $row->created_at->isoFormat('DD MMMM Y HH:mm:ss'),
-                    'timestamp' => $row->created_at->timestamp,
-                ];
+            ->editColumn('nilai_rincian', function ($row) {
+                return number_format($row->nilai_rincian,0,",",".");
             })
-            ->editColumn('updated_at', function ($row) {
-                return [
-                    'display' => $row->updated_at->isoFormat('DD MMMM Y HH:mm:ss'),
-                    'timestamp' => $row->updated_at->timestamp,
-                ];
+            ->editColumn('nilai_realisasi', function ($row) {
+                return number_format($row->nilai_realisasi,0,",",".");
             })
+            // ->editColumn('created_at', function ($row) {
+            //     return [
+            //         'display' => $row->created_at->isoFormat('DD MMMM Y HH:mm:ss'),
+            //         'timestamp' => $row->created_at->timestamp,
+            //     ];
+            // })
+            // ->editColumn('updated_at', function ($row) {
+            //     return [
+            //         'display' => $row->updated_at->isoFormat('DD MMMM Y HH:mm:ss'),
+            //         'timestamp' => $row->updated_at->timestamp,
+            //     ];
+            // })
             ->toJson();
         }
 
@@ -54,6 +64,8 @@ class Anggaran2Controller extends Controller
         return view($this->type . '.index', [
             'type' => $this->type,
         ]);
+        }
+
     }
 
     /**
@@ -61,9 +73,14 @@ class Anggaran2Controller extends Controller
      */
     public function importForm()
     {
-        return view($this->type . '.import', [
-            'type' => $this->type,
-        ]);
+        
+        if(!session()->has('uuid') || !session()->has('username')){
+            return redirect()->route('login.user');
+        } else {
+            return view($this->type . '.import', [
+                'type' => $this->type,
+            ]);
+        }
     }
 
     /**

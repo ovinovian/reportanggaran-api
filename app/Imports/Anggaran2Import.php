@@ -5,10 +5,11 @@ namespace App\Imports;
 use App\Models\Anggaran2;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
+// use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class Anggaran2Import implements ToModel
+class Anggaran2Import implements ToModel, WithChunkReading, WithStartRow
 {
     /**
     * @param array $row
@@ -68,4 +69,16 @@ class Anggaran2Import implements ToModel
         // ]);
     }
 
+    /**
+     * @return int
+     */
+    public function chunkSize(): int
+    {
+        return 1000;
+    }
+
+    public function startRow(): int
+    {
+        return 2;
+    }
 }

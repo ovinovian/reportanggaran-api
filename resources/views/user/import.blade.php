@@ -6,20 +6,23 @@
 <div class="container shadow-sm bg-body rounded py-4">
   <header class="pb-3 mb-4 border-bottom">
     <a href="{{ route($type . '.index') }}" class="d-flex align-items-center text-dark text-decoration-none">
-      <img src="{{ asset('logo.svg') }}" class="me-2 fill-blue" width="50" height="50" alt="{{ config('app.name', 'Laravel 9') }} | @yield('title')">
+      <img src="{{ asset('logo.svg') }}" class="me-2 fill-blue" width="50" height="50"
+        alt="{{ config('app.name', 'Laravel 9') }} | @yield('title')">
       <span class="fs-4">@yield('title')</span>
     </a>
   </header>
 
   <div class="row mb-3">
     <div class="col">
-      <form method="POST" action="{{ route($type . '.import') }}" id="form-import" class="needs-validation" accept-charset="UTF-8" enctype="multipart/form-data" novalidate>
+      <form method="POST" action="{{ route($type . '.imported') }}" id="form-import" class="needs-validation"
+        accept-charset="UTF-8" enctype="multipart/form-data" novalidate>
         @csrf
 
         <div class="row mb-3">
           <label for="file" class="col-sm-2 col-form-label text-capitalize">{{ __('file') }}</label>
           <div class="col-sm-10">
-            <input type="file" name="file" id="file" class="form-control" value="" placeholder="{{ __('Please Enter File') }}" required>
+            <input type="file" name="file" id="file" class="form-control" value=""
+              placeholder="{{ __('Please Enter File') }}" required>
             <div class="invalid-feedback" id="fileError">
               ERROR
             </div>
@@ -35,14 +38,16 @@
                   {{ __('save') }}
                 </button>
 
-                <a href="{{ route($type . '.index') }}" name="cancel" id="cancel" class="btn btn-outline-danger text-uppercase">
+                <a href="{{ route($type . '.index') }}" name="cancel" id="cancel"
+                  class="btn btn-outline-danger text-uppercase">
                   <i class="fa-solid fa-x me-1"></i>
                   {{ __('cancel') }}
                 </a>
               </div>
 
               <div class="col d-flex justify-content-end">
-                <a href="{{ route($type . '.import.template') }}" name="cancel" id="cancel" class="btn btn-outline-primary text-uppercase">
+                <a href="{{ route($type . '.import.template') }}" name="cancel" id="cancel"
+                  class="btn btn-outline-primary text-uppercase">
                   <i class="fa-solid fa-file-arrow-down fa-lg me-1"></i>
                   {{ __('download template') }}
                 </a>
@@ -58,9 +63,9 @@
 @endsection
 
 @once
-  @push('after-scripts')
-  <script>
-    $(function() {
+@push('after-scripts')
+<script>
+  $(function() {
       $('#form-import').on('submit', function(e) {
         e.preventDefault();
         $.ajaxSetup({
@@ -124,6 +129,6 @@
         });
       });
     });
-  </script>
-  @endpush
+</script>
+@endpush
 @endonce

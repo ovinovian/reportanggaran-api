@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app2')
 
 @section('title', __('Datatables CRUD - Import Data'))
 

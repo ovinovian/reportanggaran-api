@@ -34,50 +34,7 @@
             <div class="content">
                 @include('dashboards.layouts.navbar')
 
-                <div class="row mt-4">
-                    <div class="col-xl-3 col-lg-4">
-                        <div class="card tilebox-one card-3">
-                            <div class="card-body">
-                                <i class='uil uil-users-alt float-end'></i>
-                                <h6 class="text-uppercase mt-0">Jumlah OPD</h6>
-                                <h2 class="my-2">{{ $opd->count() }}</h2>
-                            </div> <!-- end card-body-->
-                        </div>
-                        <!--end card-->
-                    </div> <!-- end col -->
-                    <div class="col-xl-3 col-lg-4">
-
-                        <div class="card tilebox-one">
-                            <div class="card-body">
-                                <i class='uil uil-users-alt float-end'></i>
-                                <h6 class="text-uppercase mt-0">Total Anggaran</h6>
-                                <h2 class="my-2">{{ $data[0]['total_rincian'] }}</h2>
-                            </div> <!-- end card-body-->
-                        </div>
-                        <!--end card-->
-                    </div>
-                    <div class="col-xl-3 col-lg-4">
-                        <div class="card tilebox-one card-3">
-                            <div class="card-body">
-                                <i class='uil uil-users-alt float-end'></i>
-                                <h6 class="text-uppercase mt-0">Total Realisasi </h6>
-                                <h2 class="my-2">{{ $data[0]['total_realisasi'] }}</h2>
-                            </div> <!-- end card-body-->
-                        </div>
-                        <!--end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-xl-3 col-lg-4">
-                        <div class="card tilebox-one">
-                            <div class="card-body">
-                                <i class='uil uil-users-alt float-end'></i>
-                                <h6 class="text-uppercase mt-0">Persentase Capaian</h6>
-                                <h2 class="my-2">{{ $data[0]['persentase_capaian'] }}</h2>
-                            </div> <!-- end card-body-->
-                        </div>
-                        <!--end card-->
-                    </div> <!-- end col -->
-                </div>
+                @yield('content')
 
             </div>
             <!-- content -->
